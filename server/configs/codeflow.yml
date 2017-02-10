@@ -79,3 +79,6 @@ plugins:
     workdir: "/tmp/git_sync" 
   heartbeat:
     workers: 0
+  route53:
+    workers: 1
+    hosted_zone_id: ""

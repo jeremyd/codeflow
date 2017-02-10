@@ -56,7 +56,8 @@ func UpdateLBHTTPS(t plugins.Type) agent.Event {
 
 func LBDataForTCP(action plugins.Action, t plugins.Type) plugins.LoadBalancer {
 	project := plugins.Project{
-		Slug: "nginx-test-success",
+		Slug:       "nginx-test-success",
+		Repository: "checkr/nginx-test-success",
 	}
 	service := plugins.Service{
 		Action:  action,
@@ -91,6 +92,7 @@ func LBDataForTCP(action plugins.Action, t plugins.Type) plugins.LoadBalancer {
 				Destination: plugins.Listener{Port: 80, Protocol: "TCP"},
 			},
 		},
+		Route53DNS: "nginx-testing.checkrhq-dev.net",
 	}
 	return lbe
 }
