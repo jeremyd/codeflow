@@ -339,7 +339,6 @@ type Secret struct {
 	Value              string        `bson:"value" json:"value"`
 	Type               plugins.Type  `bson:"type" json:"type"`
 	Deleted            bool          `bson:"deleted" json:"deleted"`
-	Protected          bool          `bson:"protected" json:"protected"`
 }
 
 type Build struct {
