@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 WORKDIR=${WORKDIR-.}
 
 if echo "$1" | grep -q "WORKDIR="; then

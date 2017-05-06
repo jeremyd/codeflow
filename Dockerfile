@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM golang:1.8-stretch
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
@@ -7,7 +7,10 @@ ENV APP_PATH /go/src/github.com/checkr/codeflow
 RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
-RUN apk -U add alpine-sdk libgit2-dev git gcc nodejs
+RUN apt-get update && apt-get install -y gnupg2
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - \
+  && apt-get install -y nodejs libgit2-dev git
+
 RUN go get github.com/cespare/reflex
 RUN npm install gitbook-cli -g
 
