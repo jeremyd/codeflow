@@ -1,4 +1,4 @@
-FROM golang:alpine
+FROM finalduty/archlinux:latest
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
@@ -7,7 +7,10 @@ ENV APP_PATH /go/src/github.com/checkr/codeflow
 RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
-RUN apk -U add alpine-sdk libgit2-dev git gcc nodejs
+RUN pacman -Sy --noconfirm libgit2 git gcc nodejs go go-tools npm
+
+#RUN apk -U add alpine-sdk libgit2-dev git gcc nodejs
+
 RUN go get github.com/cespare/reflex
 RUN npm install gitbook-cli -g
 
