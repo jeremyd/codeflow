@@ -3,11 +3,12 @@ FROM finalduty/archlinux:latest
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 ENV APP_PATH /go/src/github.com/checkr/codeflow
+ENV GOPATH /go
 
 RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
 
-RUN pacman -Sy --noconfirm libgit2 git gcc nodejs go go-tools npm
+RUN pacman -Sy --noconfirm libgit2 git gcc nodejs go go-tools npm base-devel
 
 #RUN apk -U add alpine-sdk libgit2-dev git gcc nodejs
 
@@ -34,5 +35,6 @@ WORKDIR $APP_PATH/dashboard
 RUN npm run build
 
 WORKDIR $APP_PATH
+ENV PATH ${PATH}:/go/bin
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
